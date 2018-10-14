@@ -1,6 +1,6 @@
 package com.umg.controllers.create;
 
-import com.umg.interfaces.CreateRegister;
+import com.umg.interfaces.controllers.CreateRegister;
 import com.umg.models.RoomService;
 
 
@@ -21,5 +21,6 @@ public class CTRRoomServiceCreate implements CreateRegister{
         public boolean create() {
             throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         }
+        
 
 }

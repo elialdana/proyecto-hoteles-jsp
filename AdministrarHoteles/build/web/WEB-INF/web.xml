@@ -4,13 +4,22 @@
         <listener-class>com.sun.xml.ws.transport.http.servlet.WSServletContextListener</listener-class>
     </listener>
     <servlet>
-        <servlet-name>NewWebService</servlet-name>
+        <servlet-name>CreateServiceImpl</servlet-name>
+        <servlet-class>com.sun.xml.ws.transport.http.servlet.WSServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdateServiceImpl</servlet-name>
         <servlet-class>com.sun.xml.ws.transport.http.servlet.WSServlet</servlet-class>
         <load-on-startup>1</load-on-startup>
     </servlet>
     <servlet-mapping>
-        <servlet-name>NewWebService</servlet-name>
-        <url-pattern>/NewWebService</url-pattern>
+        <servlet-name>CreateServiceImpl</servlet-name>
+        <url-pattern>/CreateServiceImpl</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateServiceImpl</servlet-name>
+        <url-pattern>/UpdateServiceImpl</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

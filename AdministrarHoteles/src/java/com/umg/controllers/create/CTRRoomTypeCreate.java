@@ -1,7 +1,7 @@
 package com.umg.controllers.create;
 
 
-import com.umg.interfaces.CreateRegister;
+import com.umg.interfaces.controllers.CreateRegister;
 import com.umg.models.RoomTypes;
 
 

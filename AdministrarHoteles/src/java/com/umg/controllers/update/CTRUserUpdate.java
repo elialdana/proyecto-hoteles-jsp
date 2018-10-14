@@ -1,6 +1,6 @@
 package com.umg.controllers.update;
 
-import com.umg.interfaces.UpdateRegister;
+import com.umg.interfaces.controllers.UpdateRegister;
 import com.umg.models.User;
 
 

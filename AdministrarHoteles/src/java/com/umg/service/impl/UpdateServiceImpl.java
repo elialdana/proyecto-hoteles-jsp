@@ -13,8 +13,8 @@ import javax.jws.WebParam;
  *
  * @author Asus TP500L
  */
-@WebService(serviceName = "NewWebService")
-public class NewWebService {
+@WebService(serviceName = "UpdateServiceImpl")
+public class UpdateServiceImpl {
 
     /**
      * This is a sample web service operation
