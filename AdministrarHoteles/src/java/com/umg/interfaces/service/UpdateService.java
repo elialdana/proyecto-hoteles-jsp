@@ -3,13 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.umg.validation;
+package com.umg.interfaces.service;
+
+import com.umg.utils.ErrosWS;
+import com.umg.utils.RequestFilter;
 
 /**
  *
  * @author Asus TP500L
  */
-public abstract class ValidationString {
-    
- 
+public interface UpdateService {
+    public ErrosWS update(RequestFilter request);
 }

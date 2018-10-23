@@ -13,7 +13,7 @@ public class Filter {
     private String campo;
     private String value;
     private String type;
-
+    
     public Filter() {
     }
 

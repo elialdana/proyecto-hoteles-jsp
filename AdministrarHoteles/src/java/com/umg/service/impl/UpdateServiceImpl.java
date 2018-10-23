@@ -7,6 +7,7 @@ package com.umg.service.impl;
 
 import com.umg.dao.*;
 import com.umg.interfaces.service.CreateService;
+import com.umg.interfaces.service.UpdateService;
 import com.umg.utils.Constants;
 import com.umg.utils.ErrorCodeWS;
 import com.umg.utils.ErrosWS;
@@ -19,21 +20,20 @@ import java.util.List;
  *
  * @author Asus TP500L
  */
-public class CreateServiceImpl implements CreateService {
+public class UpdateServiceImpl implements UpdateService {
 
     private static final GenericDao dao = new GenericDao();
 
     @Override
-    public ErrosWS create(RequestFilter request) {
+    public ErrosWS update(RequestFilter request) {
         ErrosWS error = null;
 
         //TODO VALIDACIONES
         //GUARDAR
         String table = request.getTable();
         List<Filter> lstFilters = request.getLstFilters();
-
-        String campos = "";
-        String valores = "";
+        Integer id = request.getId();
+        String modify = "";
         int sizeCount = 1;
         int sizeEnd = 0;
         if (null != lstFilters && !lstFilters.isEmpty()) {
@@ -41,11 +41,10 @@ public class CreateServiceImpl implements CreateService {
             for (Filter f : lstFilters) {
 
                 if (sizeEnd > sizeCount) {
-                    campos += f.getCampo() + ", ";
-                    valores += PrepareDB.get(f.getValue() , f.getType())  + ", ";
+                    modify += f.getCampo() + " = "+PrepareDB.get(f.getValue() , f.getType()) + ", ";
+
                 } else {
-                    campos += f.getCampo();
-                    valores += PrepareDB.get(f.getValue() , f.getType()) ;
+                    modify += f.getCampo() + " = "+PrepareDB.get(f.getValue() , f.getType()) ;
                 }
 
                 sizeCount++;
@@ -54,7 +53,7 @@ public class CreateServiceImpl implements CreateService {
 
         }
         //CONSTRUCCIÓN DE QUERY
-        String query = "insert into "+Constants.ESQUEMA+"." + table + " ( " + campos + ") values (" + valores + ");";
+        String query = "update  "+Constants.ESQUEMA+"." + table +  " SET "+modify +"WHERE id = "+id;
 
         //EJECUTANDO EN BASE DE DATOS
         boolean result = dao.execute(query);

@@ -12,6 +12,7 @@ public class RequestFilter {
 
 
     private String table;
+    private Integer id ;
     private List<Filter>lstFilters;
 
     public RequestFilter() {
@@ -30,6 +31,14 @@ public class RequestFilter {
 
     public void setLstFilters(List<Filter> lstFilters) {
         this.lstFilters = lstFilters;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     
