@@ -15,7 +15,7 @@ public class Constants {
     public final static String URL = Constants.URL_BASE+Constants.SERVIDOR+Constants.PUERTO+Constants.BD;
     public final static String USER = "root";
     public final static String PASSWORD = "";
-    
+    public final static String ESQUEMA = "hotel";
     // Cadenas para formar URL
     public final static String URL_BASE = "jdbc:mysql://";
     public final static String SERVIDOR = "localhost:";

@@ -7,6 +7,7 @@ package com.umg.service.impl;
 
 import com.umg.dao.*;
 import com.umg.interfaces.service.CreateService;
+import com.umg.utils.Constants;
 import com.umg.utils.ErrorCodeWS;
 import com.umg.utils.ErrosWS;
 import com.umg.utils.Filter;
@@ -52,7 +53,7 @@ public class CreateServiceImpl implements CreateService {
 
         }
         //CONSTRUCCIÓN DE QUERY
-        String query = "insert into hotel." + table + " ( " + campos + ") values (" + valores + ");";
+        String query = "insert into "+Constants.ESQUEMA+"." + table + " ( " + campos + ") values (" + valores + ");";
 
         //EJECUTANDO EN BASE DE DATOS
         boolean result = dao.execute(query);
