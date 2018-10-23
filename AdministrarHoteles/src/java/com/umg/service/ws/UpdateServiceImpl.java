@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.umg.service.impl;
+package com.umg.service.ws;
 
 import javax.jws.WebService;
 import javax.jws.WebMethod;

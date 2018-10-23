@@ -5,61 +5,64 @@
  */
 package com.umg.service.impl;
 
+import com.umg.dao.*;
 import com.umg.interfaces.service.CreateService;
+import com.umg.utils.ErrorCodeWS;
 import com.umg.utils.ErrosWS;
 import com.umg.utils.Filter;
 import com.umg.utils.RequestFilter;
 import java.util.List;
-import javax.jws.WebService;
-import javax.jws.WebMethod;
-import javax.jws.WebParam;
 
 /**
  *
  * @author Asus TP500L
  */
-@WebService(serviceName = "CreateService")
-public class CreateServiceImpl implements CreateService{
+public class CreateServiceImpl implements CreateService {
 
-    @WebMethod(operationName = "create")
+    private static final GenericDao dao = new GenericDao();
+
     @Override
-    public ErrosWS create(@WebParam(name = "request") RequestFilter request) {
+    public ErrosWS create(RequestFilter request) {
+        ErrosWS error = null;
+
         //TODO VALIDACIONES
         //GUARDAR
         String table = request.getTable();
-        List<Filter>lstFilters = request.getLstFilters();
-   
-        String campos =null;
-        String valores = null;
-        int sizeCount = 0; 
+        List<Filter> lstFilters = request.getLstFilters();
+
+        String campos = "";
+        String valores = "";
+        int sizeCount = 1;
         int sizeEnd = 0;
-        if(null != lstFilters && !lstFilters.isEmpty()){
+        if (null != lstFilters && !lstFilters.isEmpty()) {
             sizeEnd = lstFilters.size();
-             for (Filter f : lstFilters) {
-                 
-                if(sizeEnd != sizeCount){
-                    campos+=f.getCampo()+", ";
-                    valores+=f.getValue()+", ";
-                }else{
-                    campos+=f.getCampo();
-                    valores+=f.getValue();
+            for (Filter f : lstFilters) {
+
+                if (sizeEnd > sizeCount) {
+                    campos += f.getCampo() + ", ";
+                    valores += "'" + f.getValue() + "'" + ", ";
+                } else {
+                    campos += f.getCampo();
+                    valores += "'" + f.getValue() + "'";
                 }
 
-                  sizeCount++;    
-             
-              }
-             
+                sizeCount++;
+
+            }
+
         }
         //CONSTRUCCIÓN DE QUERY
-        String query ="insert into "+table+" (ID, "+campos+") values ("+valores+")";    
-        
-        
-        System.out.println("consumiento ws crear "+query);
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    
-        
-    }
+        String query = "insert into hotel." + table + " ( " + campos + ") values (" + valores + ");";
 
-   
+        //EJECUTANDO EN BASE DE DATOS
+        boolean result = dao.execute(query);
+        if (!result) {
+            error = ErrorCodeWS.ERROR_DATABASE_INSERT;
+            return error;
+        }
+        System.out.println("consumiento ws crear " + query);
+        error = ErrorCodeWS.SUCCESSFUL_TRANSACTION;
+        return error;
+    }
 
 }
